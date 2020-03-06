@@ -45,9 +45,9 @@ def incircle(x, y, r=0, c=0):
     c: clearance of the robot
 
     returns:
-    Equation of the circle
+    whether the point is inside the circle or not
     '''
-    # equation of circle: (x-225)^2 + (y-150)= 25^2
+# equation of circle: (x-225)^2 + (y-150)= 25^2
     return (x-225)**2 + (y-150)**2 <= (25+r+c)**2
 
 def inellipse(x, y, r=0, c=0):
@@ -60,7 +60,7 @@ def inellipse(x, y, r=0, c=0):
     c: clearance of the robot
 
     returns:
-    Equation of the ellipse
+    whether the point is inside the ellipse or not
     '''
 # equation of ellipse: (x-150)^{2}/40^{2}+\(y-100)^{2}/20^{2}=1
     return (x-150)**2/(40+r+c)**2+(y-100)**2/(20+r+c)**2 <= 1
@@ -100,7 +100,7 @@ def indiamond(x, y, r=0, c=0):
     c: clearance of the robot
 
     returns:
-    Boundary condition for the diamond
+    whether the point is inside the diamond or not
     '''
 # cords = (225,10), (250,25), (225,40), (200,25)
     m1, c1 = get_straight(225, 10, 250, 25, r, c)
@@ -120,7 +120,7 @@ def inconcave1(x, y, r=0, c=0):
     c: clearance of the robot
 
     returns:
-    Boundary condition for the concave polygon 1
+    whether the point is inside the concave polygon 1 or not
     '''
 # cords: (25,185),(75,185),(50,150),(20,120)
     m1, c1 = get_straight(25, 185, 75, 185, r, c, True)
@@ -140,7 +140,7 @@ def inconcave2(x, y, r=0, c=0):
     c: clearance of the robot
 
     returns:
-    Boundary condition for the concave polygon 2
+    whether the point is inside the concave polygon 2 or not
     '''
 # cords: (75,185),(100,150),(75,120),(50,150)
     m1, c1 = get_straight(75, 185, 100, 150, r, c, True)
@@ -160,7 +160,7 @@ def inrectangle(x, y, r=0, c=0):
     c: clearance of the robot
 
     returns:
-    Boundary condition for the rectangle
+    whether the point is inside the rectangle or not
     '''
 # cords: (95,30),(100,38.66),(35.05,76.16),(30.05,67.5)
     m1, c1 = get_straight(95, 30, 100, 38.66, r, c)
@@ -180,7 +180,7 @@ def get_children(state, mat, size=(200, 300)):
     size: size of the map
 
     returns:
-    new_states: new current coordinates
+    new_states: dictionary which maps the child coordinates to cost
     '''
     new_states = {}
     for i in actions_cost.values():
@@ -200,8 +200,8 @@ def dijkstra(mat, start, goal):
 
     returns:
     cost: updated cost of coordinates
-    backtrack: ??
-    memory: ??
+    backtrack: maps previous coordinate to current coordinate
+    memory: list of ordered coordinates that are visited
     '''
     cost = np.full(mat.shape, np.inf)
     memory = []
@@ -255,12 +255,12 @@ def main(start, goal, rad=0, clearance=0, speed=100):
     goal: goal coordinate
     rad: radius of the robot
     clearance: clearance of the robot
-    speed: speed of ??
+    speed: speed of animation
 
     returns:
     mat: generated map considering the robot radius and clearance
-    memory: ??
-    backtrack: ??
+    memory: list of ordered coordinates that are visited
+    backtrack: maps previous coordinate to current coordinate
     '''
 
     mat = create_map(rad, clearance)

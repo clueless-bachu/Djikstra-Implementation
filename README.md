@@ -19,8 +19,8 @@ Python and python libraries like Numpy, Opencv, Heapq and Time are required to r
   - In cases where no optimal path is found, "Path not found" is printed.
   
  ### Runtime for start=(5,5) and goal=(295,195)
-  - Point Robot: 30 seconds
-  - Rigid Robot: 30 seconds
+  - Point Robot: 30 seconds (including animation)
+  - Rigid Robot: 30 seconds (including animation)
 
 ------------------------------------------------------------------------------------------------------------------
 ## Authors
